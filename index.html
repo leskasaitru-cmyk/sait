@@ -34,6 +34,7 @@
     --badge-bg: rgba(108, 92, 231, 0.06);
     --btn-ghost-hover: #13131c;
     --green: #2ecc71;
+    --green-2: #27ae60;
     --red: #e74c3c;
   }
 
@@ -57,6 +58,7 @@
     --badge-bg: rgba(91, 77, 224, 0.06);
     --btn-ghost-hover: #f4f2fb;
     --green: #27ae60;
+    --green-2: #229954;
     --red: #c0392b;
   }
 
@@ -406,7 +408,7 @@
     margin: 0 auto;
   }
 
-  /* ===== УСЛУГИ (карточки) ===== */
+  /* ===== УСЛУГИ ===== */
   .services {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -581,6 +583,84 @@
     margin-top: 4px;
   }
 
+  /* ===== ЦЕНЫ ===== */
+  .price-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .price-free {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 420px;
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .price-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 2px 12px var(--shadow);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+  }
+
+  .price-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px var(--shadow-hover);
+    transform: translateY(-3px);
+  }
+
+  .price-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .price-value {
+    font-size: 17px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+  }
+
+  /* Зелёный акцент для бесплатной публикации */
+  .price-free {
+    border-color: rgba(46, 204, 113, 0.3);
+  }
+  .price-free:hover {
+    border-color: var(--green);
+  }
+  .price-free .price-value {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .price-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 24px;
+  }
+
+  .price-note a {
+    color: var(--accent-2);
+    text-decoration: none;
+  }
+
   /* ===== ПОРТФОЛИО ===== */
   .portfolio-grid {
     display: grid;
@@ -699,57 +779,6 @@
     font-weight: 500;
   }
 
-  /* ===== ЦЕНЫ ===== */
-  .price-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .price-item {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 22px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    box-shadow: 0 2px 12px var(--shadow);
-    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
-  }
-
-  .price-item:hover {
-    border-color: var(--accent);
-    box-shadow: 0 12px 30px var(--shadow-hover);
-    transform: translateY(-3px);
-  }
-
-  .price-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .price-value {
-    font-size: 17px;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    white-space: nowrap;
-  }
-
-  .price-note {
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 14px;
-    margin-top: 24px;
-  }
-
   /* ===== CTA ===== */
   .cta-box {
     background: var(--bg-card);
@@ -827,7 +856,15 @@
       gap: 20px;
     }
 
-    .price-list { grid-template-columns: 1fr; }
+    /* Цены: одна колонка на планшетах/телефонах */
+    .price-list {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+    .price-free {
+      max-width: 100%;
+      margin-top: 0;
+    }
 
     .cta-box { padding: 48px 28px; border-radius: 22px; }
     .card { padding: 30px 24px; }
@@ -878,7 +915,7 @@
     }
   }
 
-  /* ===== ОТКЛЮЧАЕМ ТЯЖЁЛЫЕ ЭФФЕКТЫ НА МОБИЛЬНЫХ ===== */
+  /* Отключаем тяжёлые эффекты на мобильных */
   @media (max-width: 768px), (hover: none) {
     body::before,
     body::after {
@@ -901,6 +938,7 @@
         <a href="#services">Услуги</a>
         <a href="#what">Что делаю</a>
         <a href="#speed">Сроки</a>
+        <a href="#prices">Цены</a>
         <a href="#portfolio">Работы</a>
         <a href="#contact">Контакты</a>
       </nav>
@@ -981,7 +1019,6 @@
     </div>
 
     <div class="what-grid">
-      <!-- ДЕЛАЮ -->
       <div class="what-box what-yes">
         <div class="what-head">
           <span class="what-icon">✅</span>
@@ -1003,7 +1040,6 @@
         </p>
       </div>
 
-      <!-- НЕ ДЕЛАЮ -->
       <div class="what-box what-no">
         <div class="what-head">
           <span class="what-icon">🚫</span>
@@ -1093,16 +1129,17 @@
         <span class="price-value">от 8 000 ₽</span>
       </div>
 
-      <div class="price-item">
+      <!-- Публикация — отдельно, снизу по центру -->
+      <div class="price-item price-free">
         <span class="price-name">🌐 Публикация в интернете</span>
         <span class="price-value">Бесплатно</span>
       </div>
-      
+      <!-- ============================================= -->
 
     </div>
 
     <p class="price-note">
-      💬 Точная цена зависит от сложности. <a href="#contact" style="color: var(--accent-2); text-decoration: none;">Напишите мне</a> — обсудим ваш проект.
+      💬 Точная цена зависит от сложности. <a href="#contact">Напишите мне</a> — обсудим ваш проект.
     </p>
   </div>
 </section>
@@ -1116,7 +1153,7 @@
     </div>
 
     <div class="portfolio-grid">
-     
+      
       <a href="https://vk.ru/away.php?to=https%3A%2F%2Fleskasaitru-cmyk.github.io%2Fru%2F&utf=1" target="_blank" rel="noopener" class="project">
         <div class="project-preview">
           <div class="preview-ui">
@@ -1136,7 +1173,7 @@
           </div>
         </div>
       </a>
-      
+     
 
       <div class="project" style="opacity:.6; cursor:default;">
         <div class="project-preview">
@@ -1167,9 +1204,9 @@
       <p class="cta-sub">⚡ Средний срок — <strong>2–3 дня</strong>. Публикация — бесплатно.</p>
       <div class="btn-group">
 
-       
+        
         <a href="https://vk.ru/away.php?to=https%3A%2F%2Ft.me%2FBrozeres&utf=1" target="_blank" rel="noopener" class="btn btn-primary">✈️ Написать в Telegram</a>
-      
+        
 
         <a href="#portfolio" class="btn btn-ghost">Смотреть работы</a>
       </div>
@@ -1180,7 +1217,7 @@
 <!-- ФУТЕР -->
 <footer>
   <div class="container">
-    © 2025 — Веб-разработка под ключ. Сделано с ❤️
+    © 2026 — Веб-разработка под ключ. Сделано с ❤️
   </div>
 </footer>
 
@@ -1213,11 +1250,8 @@
   }
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isMobile = window.matchMedia('(max-width: 768px), (hover: none)').matches;
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  const isMobileOrTouch = isMobile || isTouchDevice;
 
-  /* ===== ПЛАВНОЕ ПОЯВЛЕНИЕ СЕКЦИЙ ===== */
+  /* ===== ПОЯВЛЕНИЕ СЕКЦИЙ ===== */
   if (!prefersReduced && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
