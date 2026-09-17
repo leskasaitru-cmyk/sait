@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0f">
 <title>Веб-разработчик — Сайты под ключ</title>
-
-
 <style>
   * {
     margin: 0;
@@ -35,6 +33,8 @@
     --glow-2: rgba(0, 212, 255, 0.35);
     --badge-bg: rgba(108, 92, 231, 0.06);
     --btn-ghost-hover: #13131c;
+    --green: #2ecc71;
+    --red: #e74c3c;
   }
 
   [data-theme="light"] {
@@ -56,6 +56,8 @@
     --glow-2: rgba(0, 180, 220, 0.18);
     --badge-bg: rgba(91, 77, 224, 0.06);
     --btn-ghost-hover: #f4f2fb;
+    --green: #27ae60;
+    --red: #c0392b;
   }
 
   html {
@@ -137,7 +139,7 @@
     margin-left: auto;
   }
 
-  nav { display: flex; gap: 28px; }
+  nav { display: flex; gap: 22px; }
 
   nav a {
     color: var(--text-muted);
@@ -278,30 +280,22 @@
     border-radius: 100px;
     font-size: 13px;
     color: var(--text-muted);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     background: var(--badge-bg);
     max-width: 100%;
-    animation: badgeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
   }
   .badge + .badge { margin-left: 8px; }
 
-  @keyframes badgeIn {
-    from { opacity: 0; transform: translateY(-20px) scale(0.9); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  /* Зелёная точка — анимация только через opacity, без transform */
   .badge span {
     display: inline-block;
     width: 8px;
     height: 8px;
-    background: #2ecc71;
+    background: var(--green);
     border-radius: 50%;
     margin-right: 8px;
-    box-shadow: 0 0 12px #2ecc71;
+    box-shadow: 0 0 12px var(--green);
     vertical-align: middle;
     animation: pulse 2s ease-in-out infinite;
-    will-change: opacity;
   }
 
   @keyframes pulse {
@@ -316,12 +310,6 @@
     letter-spacing: -2px;
     margin: 24px 0;
     word-wrap: break-word;
-    animation: heroIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
-  }
-
-  @keyframes heroIn {
-    from { opacity: 0; transform: translateY(40px); filter: blur(8px); }
-    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
 
   h1 .gradient {
@@ -341,14 +329,8 @@
   .hero p {
     font-size: clamp(15px, 2.2vw, 19px);
     color: var(--text-muted);
-    max-width: 620px;
+    max-width: 640px;
     margin: 0 auto 40px;
-    min-height: 3.5em;
-    animation: heroIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s backwards;
-  }
-
-  .hero .btn-group {
-    animation: heroIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.45s backwards;
   }
 
   .btn-group {
@@ -420,11 +402,11 @@
   .section-title p {
     color: var(--text-muted);
     font-size: clamp(14px, 2vw, 16px);
-    max-width: 520px;
+    max-width: 540px;
     margin: 0 auto;
   }
 
-  /* ===== УСЛУГИ ===== */
+  /* ===== УСЛУГИ (карточки) ===== */
   .services {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -473,6 +455,130 @@
   .card p {
     color: var(--text-muted);
     font-size: clamp(14px, 2vw, 15px);
+  }
+
+  /* ===== СЕКЦИЯ "ЧТО ДЕЛАЮ / НЕ ДЕЛАЮ" ===== */
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .what-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 2px 12px var(--shadow);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+  }
+
+  .what-box:hover {
+    box-shadow: 0 20px 50px var(--shadow-hover);
+  }
+
+  .what-yes:hover { border-color: var(--green); }
+  .what-no { opacity: 0.8; }
+  .what-no:hover { border-color: var(--red); opacity: 1; }
+
+  .what-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .what-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .what-yes .what-icon {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    box-shadow: 0 6px 16px rgba(46, 204, 113, 0.3);
+  }
+
+  .what-no .what-icon {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    box-shadow: 0 6px 16px rgba(231, 76, 60, 0.3);
+  }
+
+  .what-head h3 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .what-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+  }
+
+  .what-list li {
+    position: relative;
+    padding: 8px 0 8px 26px;
+    color: var(--text-muted);
+    font-size: 15px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .what-list li:last-child { border-bottom: none; }
+
+  .what-yes .what-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .what-no .what-list li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 1;
+    top: 10px;
+  }
+
+  .what-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    background: var(--badge-bg);
+    border-radius: 10px;
+    padding: 12px 14px;
+    line-height: 1.5;
+    border: 1px solid var(--border);
+  }
+
+  .what-yes .what-note { border-color: rgba(46, 204, 113, 0.25); }
+  .what-no .what-note { border-color: rgba(231, 76, 60, 0.25); }
+
+  /* ===== СЕКЦИЯ "СРОКИ" ===== */
+  .speed-price {
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: 10px;
+    letter-spacing: -0.5px;
+  }
+
+  .speed-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
   }
 
   /* ===== ПОРТФОЛИО ===== */
@@ -593,6 +699,57 @@
     font-weight: 500;
   }
 
+  /* ===== ЦЕНЫ ===== */
+  .price-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .price-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 2px 12px var(--shadow);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+  }
+
+  .price-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px var(--shadow-hover);
+    transform: translateY(-3px);
+  }
+
+  .price-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .price-value {
+    font-size: 17px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+  }
+
+  .price-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 24px;
+  }
+
   /* ===== CTA ===== */
   .cta-box {
     background: var(--bg-card);
@@ -617,9 +774,19 @@
 
   .cta-box p {
     color: var(--text-muted);
-    max-width: 520px;
-    margin: 0 auto 32px;
+    max-width: 540px;
+    margin: 0 auto 20px;
     font-size: clamp(14px, 2vw, 16px);
+  }
+
+  .cta-sub {
+    font-size: 14px !important;
+    color: var(--text-muted);
+    margin-bottom: 28px !important;
+  }
+
+  .cta-sub strong {
+    color: var(--accent-2);
   }
 
   /* ===== ФУТЕР ===== */
@@ -640,6 +807,11 @@
     section { padding: 100px 0; }
   }
 
+  @media (max-width: 1024px) {
+    nav { gap: 16px; }
+    nav a { font-size: 14px; }
+  }
+
   @media (max-width: 768px) {
     .container { padding: 0 20px; }
     nav { gap: 20px; }
@@ -650,14 +822,19 @@
     section { padding: 60px 0; }
     .section-title { margin-bottom: 40px; }
 
-    .services, .portfolio-grid {
+    .services, .portfolio-grid, .what-grid {
       grid-template-columns: 1fr;
       gap: 20px;
     }
 
+    .price-list { grid-template-columns: 1fr; }
+
     .cta-box { padding: 48px 28px; border-radius: 22px; }
     .card { padding: 30px 24px; }
     .project-preview { height: 180px; }
+    .what-box { padding: 26px 22px; }
+    .what-head h3 { font-size: 20px; }
+    .what-list li { font-size: 14px; }
   }
 
   @media (max-width: 640px) {
@@ -671,8 +848,8 @@
     section { padding: 50px 0; }
     h1 { letter-spacing: -1px; margin: 18px 0; }
     .hero p { margin-bottom: 30px; }
-    .badge { font-size: 12px; padding: 6px 14px; margin-bottom: 10px; }
-    .badge + .badge { margin-left: 0; display: block; width: fit-content; margin: 0 auto 10px; }
+    .badge { font-size: 12px; padding: 6px 14px; margin-bottom: 8px; }
+    .badge + .badge { margin-left: 0; display: block; width: fit-content; margin: 0 auto 8px; }
 
     .btn-group { flex-direction: column; width: 100%; gap: 12px; }
     .btn { width: 100%; padding: 16px 24px; font-size: 15px; }
@@ -708,152 +885,10 @@
       filter: blur(100px);
       opacity: 0.6;
     }
-    .card:hover .card-icon {
-      transform: none;
-    }
-    h1 .gradient {
-      animation-duration: 10s;
-    }
-    /* Зелёная точка — статичная на телефоне */
-    .badge span {
-      animation: none;
-      opacity: 1;
-    }
+    .card:hover .card-icon { transform: none; }
+    h1 .gradient { animation-duration: 10s; }
+    .badge span { animation: none; opacity: 1; }
   }
-
-  /* ===== СЕКЦИЯ "ЧТО Я ДЕЛАЮ" ===== */
-.what-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-.what-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 32px 28px;
-  box-shadow: 0 2px 12px var(--shadow);
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-.what-box:hover {
-  box-shadow: 0 20px 50px var(--shadow-hover);
-}
-
-.what-yes:hover {
-  border-color: var(--accent);
-}
-
-.what-no {
-  opacity: 0.75;
-}
-
-.what-no:hover {
-  border-color: #e74c3c;
-  opacity: 1;
-}
-
-.what-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.what-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
-}
-
-.what-yes .what-icon {
-  background: linear-gradient(135deg, #2ecc71, #27ae60);
-  box-shadow: 0 6px 16px rgba(46, 204, 113, 0.3);
-}
-
-.what-no .what-icon {
-  background: linear-gradient(135deg, #e74c3c, #c0392b);
-  box-shadow: 0 6px 16px rgba(231, 76, 60, 0.3);
-}
-
-.what-head h3 {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-.what-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 20px;
-}
-
-.what-list li {
-  position: relative;
-  padding: 8px 0 8px 26px;
-  color: var(--text-muted);
-  font-size: 15px;
-  border-bottom: 1px solid var(--border);
-}
-
-.what-list li:last-child {
-  border-bottom: none;
-}
-
-.what-yes .what-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #2ecc71;
-  font-weight: 700;
-  font-size: 15px;
-}
-
-.what-no .what-list li::before {
-  content: '×';
-  position: absolute;
-  left: 0;
-  color: #e74c3c;
-  font-weight: 700;
-  font-size: 17px;
-  line-height: 1;
-  top: 10px;
-}
-
-.what-note {
-  font-size: 13px;
-  color: var(--text-muted);
-  background: var(--badge-bg);
-  border-radius: 10px;
-  padding: 12px 14px;
-  line-height: 1.5;
-  border: 1px solid var(--border);
-}
-
-.what-yes .what-note {
-  border-color: rgba(46, 204, 113, 0.25);
-}
-
-.what-no .what-note {
-  border-color: rgba(231, 76, 60, 0.25);
-}
-
-@media (max-width: 768px) {
-  .what-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .what-box { padding: 26px 22px; }
-  .what-head h3 { font-size: 20px; }
-  .what-list li { font-size: 14px; }
-}
 </style>
 </head>
 <body>
@@ -864,6 +899,8 @@
     <div class="header-right">
       <nav>
         <a href="#services">Услуги</a>
+        <a href="#what">Что делаю</a>
+        <a href="#speed">Сроки</a>
         <a href="#portfolio">Работы</a>
         <a href="#contact">Контакты</a>
       </nav>
@@ -888,9 +925,10 @@
 <section class="hero">
   <div class="container">
     <div class="badge"><span></span>Доступен для новых проектов</div>
-    <div class="badge">🤖 Работаю с ИИ-инструментами</div>
+    <div class="badge">⚡ Срок — от 2 дней</div>
+    <div class="badge">🤖 Работаю с ИИ</div>
     <h1>Создаю сайты<br>под <span class="gradient">ключ</span></h1>
-    <p>Разработка дизайна и вёрстка сайтов с использованием HTML, CSS, JavaScript и ИИ-инструментов для ускорения работы. Быстро, качественно, с вниманием к деталям.</p>
+    <p>Быстрая разработка сайтов: дизайн, вёрстка на HTML, CSS, JavaScript. Благодаря ИИ-инструментам сроки короче в 2–3 раза. Публикация — бесплатно.</p>
     <div class="btn-group">
       <a href="#portfolio" class="btn btn-primary">Посмотреть работы</a>
       <a href="#contact" class="btn btn-ghost">Заказать сайт</a>
@@ -910,41 +948,40 @@
       <div class="card">
         <div class="card-icon">🎨</div>
         <h3>Дизайн</h3>
-        <p>Разрабатываю современный и уникальный дизайн, который отражает суть вашего бизнеса и нравится пользователям.</p>
+        <p>Современный и уникальный дизайн, который отражает суть вашего бизнеса и нравится пользователям.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">💻</div>
         <h3>Вёрстка</h3>
-        <p>Аккуратная адаптивная вёрстка на HTML и CSS. Сайт корректно выглядит на всех устройствах — от телефона до монитора.</p>
+        <p>Аккуратная адаптивная вёрстка на HTML и CSS. Сайт корректно выглядит на всех устройствах.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">⚡</div>
         <h3>JavaScript</h3>
-        <p>Интерактивность и анимации: слайдеры, формы, меню, эффекты и всё, что делает сайт живым и удобным.</p>
+        <p>Интерактивность и анимации: слайдеры, формы, меню, эффекты — всё, что делает сайт живым.</p>
       </div>
 
       <div class="card">
-        <div class="card-icon">🤖</div>
-        <h3>Быстрая разработка</h3>
-        <p>Использую современные ИИ-инструменты для ускорения работы — сроки короче, качество выше, стоимость ниже.</p>
+        <div class="card-icon">🌐</div>
+        <h3>Публикация</h3>
+        <p>Бесплатно размещаю сайт в интернете. Быстрая загрузка, HTTPS, ничего не нужно оплачивать.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ЧТО Я ДЕЛАЮ -->
+<!-- ЧТО ДЕЛАЮ / НЕ ДЕЛАЮ -->
 <section id="what">
   <div class="container">
     <div class="section-title">
-      <h2>Что я делаю</h2>
-      <p>Честно о том, какие сайты беру, а какие — нет</p>
+      <h2>Какие сайты беру</h2>
+      <p>Честно о том, что делаю, а что — нет</p>
     </div>
 
     <div class="what-grid">
-
-      <!-- ЧТО ДЕЛАЮ -->
+      <!-- ДЕЛАЮ -->
       <div class="what-box what-yes">
         <div class="what-head">
           <span class="what-icon">✅</span>
@@ -966,7 +1003,7 @@
         </p>
       </div>
 
-      <!-- ЧТО НЕ ДЕЛАЮ -->
+      <!-- НЕ ДЕЛАЮ -->
       <div class="what-box what-no">
         <div class="what-head">
           <span class="what-icon">🚫</span>
@@ -981,11 +1018,92 @@
           <li>Сложные веб-сервисы</li>
         </ul>
         <p class="what-note">
-          💬 Для таких задач нужен отдельный разработчик (backend). Могу порекомендовать проверенного специалиста.
+          💬 Для таких задач нужен backend-разработчик. Могу порекомендовать проверенного специалиста.
         </p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- СРОКИ -->
+<section id="speed">
+  <div class="container">
+    <div class="section-title">
+      <h2>Сколько ждать</h2>
+      <p>Работаю быстро — без потери качества</p>
+    </div>
+
+    <div class="services">
+      <div class="card">
+        <div class="card-icon">🪪</div>
+        <h3>Сайт-визитка</h3>
+        <p class="speed-price">от 1 дня</p>
+        <p class="speed-sub">Простая и стильная</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h3>Лендинг</h3>
+        <p class="speed-price">от 2 дней</p>
+        <p class="speed-sub">Продающая страница</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💼</div>
+        <h3>Портфолио</h3>
+        <p class="speed-price">от 2 дней</p>
+        <p class="speed-sub">Галерея работ</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🛍</div>
+        <h3>Каталог-витрина</h3>
+        <p class="speed-price">от 4 дней</p>
+        <p class="speed-sub">С фильтрами и заказом в Telegram</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЦЕНЫ -->
+<section id="prices">
+  <div class="container">
+    <div class="section-title">
+      <h2>Цены</h2>
+      <p>Для первых клиентов — специальные цены. Публикация бесплатно</p>
+    </div>
+
+    <div class="price-list">
+
+      <!-- ============================================= -->
+      <!-- 💰 ЦЕНЫ — ПРОВЕРЬ И ИЗМЕНИ ПОД СЕБЯ 💰 -->
+      <!-- ============================================= -->
+      <div class="price-item">
+        <span class="price-name">🪪 Сайт-визитка</span>
+        <span class="price-value">от 3 000 ₽</span>
+      </div>
+
+      <div class="price-item">
+        <span class="price-name">🚀 Лендинг</span>
+        <span class="price-value">от 5 000 ₽</span>
+      </div>
+
+      <div class="price-item">
+        <span class="price-name">💼 Портфолио / каталог</span>
+        <span class="price-value">от 8 000 ₽</span>
+      </div>
+
+      <div class="price-item">
+        <span class="price-name">🌐 Публикация в интернете</span>
+        <span class="price-value">Бесплатно</span>
+      </div>
+      
 
     </div>
+
+    <p class="price-note">
+      💬 Точная цена зависит от сложности. <a href="#contact" style="color: var(--accent-2); text-decoration: none;">Напишите мне</a> — обсудим ваш проект.
+    </p>
   </div>
 </section>
 
@@ -1015,11 +1133,10 @@
             <span class="tag">HTML</span>
             <span class="tag">CSS</span>
             <span class="tag">JavaScript</span>
-            <span class="tag">AI-assisted</span>
           </div>
         </div>
       </a>
-     
+      
 
       <div class="project" style="opacity:.6; cursor:default;">
         <div class="project-preview">
@@ -1046,7 +1163,8 @@
   <div class="container">
     <div class="cta-box">
       <h2>Нужен сайт?</h2>
-      <p>Расскажи о своей идее — сделаю современный сайт под ключ: дизайн, вёрстка, интерактивность. Работаю быстро благодаря современным ИИ-инструментам.</p>
+      <p>Расскажите о своей идее — сделаю современный сайт под ключ: дизайн, вёрстка, интерактивность. Работаю быстро и качественно.</p>
+      <p class="cta-sub">⚡ Средний срок — <strong>2–3 дня</strong>. Публикация — бесплатно.</p>
       <div class="btn-group">
 
        
@@ -1062,7 +1180,7 @@
 <!-- ФУТЕР -->
 <footer>
   <div class="container">
-    © 2026 — Веб-разработка под ключ. Сделано с ❤️
+    © 2025 — Веб-разработка под ключ. Сделано с ❤️
   </div>
 </footer>
 
@@ -1095,143 +1213,47 @@
   }
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* Определяем мобильное устройство */
   const isMobile = window.matchMedia('(max-width: 768px), (hover: none)').matches;
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   const isMobileOrTouch = isMobile || isTouchDevice;
 
-  /* ===== ЧАСТИЦЫ НА ФОНЕ (только на ПК) ===== */
-  if (!prefersReduced && !isMobileOrTouch) {
-    const canvas = document.createElement('canvas');
-    canvas.id = 'particles-canvas';
-    canvas.style.cssText = `
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
-    `;
-    document.body.appendChild(canvas);
-
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let mouse = { x: null, y: null };
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    function getAccent() {
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      return {
-        c1: isLight ? '91, 77, 224' : '108, 92, 231',
-        c2: isLight ? '0, 145, 194' : '0, 212, 255'
-      };
-    }
-
-    function createParticles() {
-      const count = Math.min(50, Math.floor(window.innerWidth / 30));
-      particles = [];
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          r: Math.random() * 1.8 + 1,
-          color: Math.random() > 0.5 ? 1 : 2
-        });
-      }
-    }
-    createParticles();
-    window.addEventListener('resize', createParticles);
-
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-    window.addEventListener('mouseleave', () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
-
-    function drawParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const { c1, c2 } = getAccent();
-
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-        if (mouse.x !== null) {
-          const dx = p.x - mouse.x;
-          const dy = p.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            p.x += (dx / dist) * 1.2;
-            p.y += (dy / dist) * 1.2;
-          }
-        }
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${p.color === 1 ? c1 : c2}, 0.7)`;
-        ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(${c1}, ${0.12 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
-          }
+  /* ===== ПЛАВНОЕ ПОЯВЛЕНИЕ СЕКЦИЙ ===== */
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
         }
       });
-      requestAnimationFrame(drawParticles);
-    }
-    drawParticles();
-  }
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-  /* ===== ПЕЧАТАЮЩИЙСЯ ТЕКСТ (только на ПК) ===== */
-  if (!prefersReduced && !isMobileOrTouch) {
-    const heroP = document.querySelector('.hero p');
-    if (heroP) {
-      const fullText = heroP.textContent.trim();
-      heroP.textContent = '';
-      heroP.style.opacity = '1';
-      heroP.style.borderRight = '2px solid var(--accent-2)';
-      heroP.style.display = 'inline-block';
-      heroP.style.paddingRight = '4px';
+    document.querySelectorAll('section:not(.hero)').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(40px)';
+      section.style.transition = 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+      observer.observe(section);
+    });
 
-      let idx = 0;
-      const typeInterval = setInterval(() => {
-        if (idx < fullText.length) {
-          heroP.textContent += fullText[idx];
-          idx++;
-        } else {
-          clearInterval(typeInterval);
-          let visible = true;
-          setInterval(() => {
-            heroP.style.borderRightColor = visible ? 'transparent' : 'var(--accent-2)';
-            visible = !visible;
-          }, 600);
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, i * 100);
+          cardObserver.unobserve(entry.target);
         }
-      }, 25);
-    }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.card, .project, .price-item, .what-box').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+      cardObserver.observe(el);
+    });
   }
 
   /* ===== RIPPLE ПРИ КЛИКЕ ===== */
@@ -1264,45 +1286,6 @@
         this.appendChild(ripple);
         setTimeout(() => ripple.remove(), 700);
       });
-    });
-  }
-
-  /* ===== ПОЯВЛЕНИЕ СЕКЦИЙ ===== */
-  if (!prefersReduced && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll('section:not(.hero)').forEach(section => {
-      section.style.opacity = '0';
-      section.style.transform = 'translateY(40px)';
-      section.style.transition = 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
-      observer.observe(section);
-    });
-
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }, i * 100);
-          cardObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.card, .project').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(40px)';
-      el.style.transition = 'opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
-      cardObserver.observe(el);
     });
   }
 
