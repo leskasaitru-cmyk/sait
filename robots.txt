@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://leskasaitru-cmyk.github.io/sait/sitemap.xml
