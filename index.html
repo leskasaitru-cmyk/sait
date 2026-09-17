@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0f">
 <title>Веб-разработчик — Сайты под ключ</title>
+
+
 <style>
   * {
     margin: 0;
@@ -718,6 +720,140 @@
       opacity: 1;
     }
   }
+
+  /* ===== СЕКЦИЯ "ЧТО Я ДЕЛАЮ" ===== */
+.what-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.what-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: 0 2px 12px var(--shadow);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.what-box:hover {
+  box-shadow: 0 20px 50px var(--shadow-hover);
+}
+
+.what-yes:hover {
+  border-color: var(--accent);
+}
+
+.what-no {
+  opacity: 0.75;
+}
+
+.what-no:hover {
+  border-color: #e74c3c;
+  opacity: 1;
+}
+
+.what-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.what-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.what-yes .what-icon {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  box-shadow: 0 6px 16px rgba(46, 204, 113, 0.3);
+}
+
+.what-no .what-icon {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  box-shadow: 0 6px 16px rgba(231, 76, 60, 0.3);
+}
+
+.what-head h3 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.what-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.what-list li {
+  position: relative;
+  padding: 8px 0 8px 26px;
+  color: var(--text-muted);
+  font-size: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.what-list li:last-child {
+  border-bottom: none;
+}
+
+.what-yes .what-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #2ecc71;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.what-no .what-list li::before {
+  content: '×';
+  position: absolute;
+  left: 0;
+  color: #e74c3c;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1;
+  top: 10px;
+}
+
+.what-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  background: var(--badge-bg);
+  border-radius: 10px;
+  padding: 12px 14px;
+  line-height: 1.5;
+  border: 1px solid var(--border);
+}
+
+.what-yes .what-note {
+  border-color: rgba(46, 204, 113, 0.25);
+}
+
+.what-no .what-note {
+  border-color: rgba(231, 76, 60, 0.25);
+}
+
+@media (max-width: 768px) {
+  .what-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .what-box { padding: 26px 22px; }
+  .what-head h3 { font-size: 20px; }
+  .what-list li { font-size: 14px; }
+}
 </style>
 </head>
 <body>
@@ -794,6 +930,61 @@
         <h3>Быстрая разработка</h3>
         <p>Использую современные ИИ-инструменты для ускорения работы — сроки короче, качество выше, стоимость ниже.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЧТО Я ДЕЛАЮ -->
+<section id="what">
+  <div class="container">
+    <div class="section-title">
+      <h2>Что я делаю</h2>
+      <p>Честно о том, какие сайты беру, а какие — нет</p>
+    </div>
+
+    <div class="what-grid">
+
+      <!-- ЧТО ДЕЛАЮ -->
+      <div class="what-box what-yes">
+        <div class="what-head">
+          <span class="what-icon">✅</span>
+          <h3>Делаю</h3>
+        </div>
+        <ul class="what-list">
+          <li>Сайт-визитку</li>
+          <li>Лендинг (продающая страница)</li>
+          <li>Портфолио (галерея работ)</li>
+          <li>Корпоративный сайт</li>
+          <li>Сайт-меню для кафе</li>
+          <li>Каталог товаров без оплаты</li>
+          <li>Сайт для записи клиентов</li>
+          <li>Свадебный сайт / приглашение</li>
+          <li>Промо-страницу мероприятия</li>
+        </ul>
+        <p class="what-note">
+          💡 Все сайты работают на HTML, CSS и JavaScript. Публикую <strong>бесплатно</strong> — быстро грузятся, ничего не надо оплачивать.
+        </p>
+      </div>
+
+      <!-- ЧТО НЕ ДЕЛАЮ -->
+      <div class="what-box what-no">
+        <div class="what-head">
+          <span class="what-icon">🚫</span>
+          <h3>Не делаю</h3>
+        </div>
+        <ul class="what-list">
+          <li>Интернет-магазин с оплатой</li>
+          <li>Личный кабинет</li>
+          <li>Чат между пользователями</li>
+          <li>CRM и админ-панели</li>
+          <li>Блог с админкой</li>
+          <li>Сложные веб-сервисы</li>
+        </ul>
+        <p class="what-note">
+          💬 Для таких задач нужен отдельный разработчик (backend). Могу порекомендовать проверенного специалиста.
+        </p>
+      </div>
+
     </div>
   </div>
 </section>
