@@ -17,7 +17,6 @@
   [data-theme="dark"] {
     --bg: #0a0a0f;
     --bg-card: #13131c;
-    --bg-card-2: #1a1a26;
     --text: #e8e8f0;
     --text-muted: #8a8a9e;
     --accent: #6c5ce7;
@@ -39,7 +38,6 @@
   [data-theme="light"] {
     --bg: #faf9fc;
     --bg-card: #ffffff;
-    --bg-card-2: #f4f2fb;
     --text: #1a1a2e;
     --text-muted: #6a6a80;
     --accent: #5b4de0;
@@ -79,6 +77,7 @@
 
   img, svg { max-width: 100%; height: auto; display: block; }
 
+  /* Статичные градиентные пятна (без анимации) */
   body::before,
   body::after {
     content: '';
@@ -88,26 +87,16 @@
     z-index: 0;
     pointer-events: none;
     transition: background 0.5s ease;
-    will-change: transform;
   }
   body::before {
     width: 550px; height: 550px;
     background: var(--glow-1);
     top: -220px; left: -180px;
-    transform: translate(var(--parallax-x, 0), var(--parallax-y, 0));
-    animation: float 14s ease-in-out infinite;
   }
   body::after {
     width: 500px; height: 500px;
     background: var(--glow-2);
     bottom: -200px; right: -180px;
-    transform: translate(calc(var(--parallax-x, 0) * -1), calc(var(--parallax-y, 0) * -1));
-    animation: float 16s ease-in-out infinite reverse;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(40px, 30px); }
   }
 
   .container {
@@ -230,7 +219,7 @@
     transform: rotate(0deg) scale(1);
   }
 
-  /* ===== ТУЛТИП (отдельный span) ===== */
+  /* ===== ТУЛТИП ===== */
   .theme-tooltip {
     position: absolute;
     top: calc(100% + 14px);
@@ -336,7 +325,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradientShift 4s ease infinite;
+    animation: gradientShift 6s ease infinite;
   }
 
   @keyframes gradientShift {
@@ -390,10 +379,9 @@
     background-size: 200% 200%;
     color: #fff;
     box-shadow: 0 10px 30px var(--shadow-hover);
-    animation: gradientShift 5s ease infinite;
   }
   .btn-primary:hover {
-    box-shadow: 0 15px 45px var(--shadow-hover), 0 0 60px var(--shadow-hover);
+    box-shadow: 0 15px 45px var(--shadow-hover);
   }
 
   .btn-ghost {
@@ -447,31 +435,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 2px 12px var(--shadow);
-    will-change: transform;
   }
-
-  .card::before,
-  .project::before,
-  .cta-box::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: radial-gradient(
-      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      rgba(108, 92, 231, 0.15),
-      transparent 40%
-    );
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .card:hover::before,
-  .project:hover::before,
-  .cta-box:hover::before { opacity: 1; }
-
-  .card > * { position: relative; z-index: 1; }
 
   .card:hover {
     border-color: var(--accent);
@@ -523,13 +487,13 @@
     display: block;
     height: 100%;
     box-shadow: 0 2px 12px var(--shadow);
-    position: relative;
-    will-change: transform;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
   }
 
   .project:hover {
     border-color: var(--accent);
     box-shadow: 0 20px 60px var(--shadow-hover);
+    transform: translateY(-6px);
   }
 
   .project-preview {
@@ -540,22 +504,6 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    transition: background 0.5s ease;
-  }
-
-  .project-preview::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 30% 40%, var(--glow-1), transparent 55%),
-      radial-gradient(circle at 70% 60%, var(--glow-2), transparent 55%);
-    animation: bgShift 8s ease-in-out infinite;
-  }
-
-  @keyframes bgShift {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    50% { transform: scale(1.15) rotate(5deg); }
   }
 
   .project-preview .preview-ui {
@@ -569,15 +517,10 @@
     padding: 12px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   [data-theme="light"] .project-preview .preview-ui {
     background: rgba(255,255,255,0.75);
     border-color: rgba(91, 77, 224, 0.15);
-  }
-
-  .project:hover .preview-ui {
-    transform: scale(1.05) translateY(-4px);
   }
 
   .preview-bar {
@@ -603,16 +546,9 @@
   .preview-line.accent {
     background: linear-gradient(90deg, var(--accent), var(--accent-2));
     width: 40%;
-    animation: lineGrow 2.5s ease-in-out infinite;
-    transform-origin: left;
   }
 
-  @keyframes lineGrow {
-    0%, 100% { transform: scaleX(1); }
-    50% { transform: scaleX(0.6); }
-  }
-
-  .project-info { padding: 24px 26px 28px; position: relative; z-index: 1; }
+  .project-info { padding: 24px 26px 28px; }
 
   .project-info h3 {
     font-size: clamp(17px, 2.5vw, 19px);
@@ -650,11 +586,6 @@
     color: var(--tag-color);
     border: 1px solid var(--tag-border);
     font-weight: 500;
-    transition: transform 0.3s ease;
-  }
-  .project:hover .tag,
-  .card:hover .tag {
-    transform: translateY(-2px);
   }
 
   /* ===== CTA ===== */
@@ -664,8 +595,6 @@
     border-radius: 28px;
     padding: 64px 40px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
     box-shadow: 0 4px 24px var(--shadow);
     transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.4s ease;
   }
@@ -679,20 +608,14 @@
     font-weight: 800;
     margin-bottom: 16px;
     letter-spacing: -1px;
-    position: relative;
-    z-index: 1;
   }
 
   .cta-box p {
     color: var(--text-muted);
     max-width: 520px;
     margin: 0 auto 32px;
-    position: relative;
     font-size: clamp(14px, 2vw, 16px);
-    z-index: 1;
   }
-
-  .cta-box .btn-group { position: relative; z-index: 1; }
 
   /* ===== ФУТЕР ===== */
   footer {
@@ -703,7 +626,6 @@
     font-size: 14px;
     border-top: 1px solid var(--border);
     margin-top: 40px;
-    transition: border-color 0.5s ease;
   }
 
   /* ===== АДАПТИВНОСТЬ ===== */
@@ -771,6 +693,21 @@
       animation-duration: 0.01ms !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+    }
+  }
+
+  /* ===== ОТКЛЮЧАЕМ ТЯЖЁЛЫЕ ЭФФЕКТЫ НА МОБИЛЬНЫХ ===== */
+  @media (max-width: 768px), (hover: none) {
+    body::before,
+    body::after {
+      filter: blur(100px);
+      opacity: 0.6;
+    }
+    .card:hover .card-icon {
+      transform: none;
+    }
+    h1 .gradient {
+      animation-duration: 10s;
     }
   }
 </style>
@@ -865,7 +802,7 @@
       <!-- ============================================= -->
       <!-- ⬇️ ЗАМЕНИ ЗДЕСЬ: ссылка на твой первый сайт ⬇️ -->
       <!-- ============================================= -->
-      <a href="https://vk.ru/away.php?to=https%3A%2F%2Fleskasaitru-cmyk.github.io%2Fru%2F&utf=1" target="_blank" rel="noopener" class="project">
+      <a href="https://ССЫЛКА-НА-ТВОЙ-ПЕРВЫЙ-САЙТ.ru" target="_blank" rel="noopener" class="project">
         <div class="project-preview">
           <div class="preview-ui">
             <div class="preview-bar"><span></span><span></span><span></span></div>
@@ -918,7 +855,7 @@
         <!-- ============================================= -->
         <!-- ⬇️ ЗАМЕНИ ЗДЕСЬ: ссылка на твой Telegram ⬇️ -->
         <!-- ============================================= -->
-        <a href="https://vk.ru/away.php?to=https%3A%2F%2Ft.me%2FBrozeres&utf=1" target="_blank" rel="noopener" class="btn btn-primary">✈️ Написать в Telegram</a>
+        <a href="https://t.me/ТВОЙ_НИК_В_TELEGRAM" target="_blank" rel="noopener" class="btn btn-primary">✈️ Написать в Telegram</a>
         <!-- ⬆️ КОНЕЦ ЗАМЕНЫ ⬆️ -->
 
         <a href="#portfolio" class="btn btn-ghost">Смотреть работы</a>
@@ -930,7 +867,7 @@
 <!-- ФУТЕР -->
 <footer>
   <div class="container">
-    © 2026 — Веб-разработка под ключ. Сделано с ❤️
+    © 2025 — Веб-разработка под ключ. Сделано с ❤️
   </div>
 </footer>
 
@@ -964,8 +901,13 @@
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ===== ЧАСТИЦЫ НА ФОНЕ ===== */
-  if (!prefersReduced) {
+  /* Определяем мобильное устройство */
+  const isMobile = window.matchMedia('(max-width: 768px), (hover: none)').matches;
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  const isMobileOrTouch = isMobile || isTouchDevice;
+
+  /* ===== ЧАСТИЦЫ НА ФОНЕ (только на ПК) ===== */
+  if (!prefersReduced && !isMobileOrTouch) {
     const canvas = document.createElement('canvas');
     canvas.id = 'particles-canvas';
     canvas.style.cssText = `
@@ -974,7 +916,7 @@
       width: 100%; height: 100%;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.6;
+      opacity: 0.5;
     `;
     document.body.appendChild(canvas);
 
@@ -998,15 +940,15 @@
     }
 
     function createParticles() {
-      const count = Math.min(60, Math.floor(window.innerWidth / 25));
+      const count = Math.min(50, Math.floor(window.innerWidth / 30));
       particles = [];
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          r: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          r: Math.random() * 1.8 + 1,
           color: Math.random() > 0.5 ? 1 : 2
         });
       }
@@ -1039,8 +981,8 @@
           const dy = p.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 120) {
-            p.x += (dx / dist) * 1.5;
-            p.y += (dy / dist) * 1.5;
+            p.x += (dx / dist) * 1.2;
+            p.y += (dy / dist) * 1.2;
           }
         }
 
@@ -1054,11 +996,11 @@
           const dx = p.x - p2.x;
           const dy = p.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 130) {
+          if (dist < 120) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(${c1}, ${0.15 * (1 - dist / 130)})`;
+            ctx.strokeStyle = `rgba(${c1}, ${0.12 * (1 - dist / 120)})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }
@@ -1069,8 +1011,8 @@
     drawParticles();
   }
 
-  /* ===== ПЕЧАТАЮЩИЙСЯ ТЕКСТ ===== */
-  if (!prefersReduced) {
+  /* ===== ПЕЧАТАЮЩИЙСЯ ТЕКСТ (только на ПК) ===== */
+  if (!prefersReduced && !isMobileOrTouch) {
     const heroP = document.querySelector('.hero p');
     if (heroP) {
       const fullText = heroP.textContent.trim();
@@ -1097,60 +1039,9 @@
     }
   }
 
-  /* ===== 3D-НАКЛОН КАРТОЧЕК ===== */
-  if (!prefersReduced && window.matchMedia('(hover: hover)').matches) {
-    document.querySelectorAll('.card, .project').forEach(el => {
-      el.style.transformStyle = 'preserve-3d';
-      el.style.transition = 'transform 0.15s ease-out, box-shadow 0.4s ease, border-color 0.4s ease';
-
-      el.addEventListener('mousemove', (e) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -6;
-        const rotateY = ((x - centerX) / centerX) * 6;
-        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
-      });
-
-      el.addEventListener('mouseleave', () => {
-        el.style.transform = '';
-      });
-    });
-  }
-
-  /* ===== ПОДСВЕТКА ПОД КУРСОРОМ ===== */
-  if (!prefersReduced && window.matchMedia('(hover: hover)').matches) {
-    document.querySelectorAll('.card, .project, .cta-box').forEach(el => {
-      el.addEventListener('mousemove', (e) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        el.style.setProperty('--mouse-x', x + 'px');
-        el.style.setProperty('--mouse-y', y + 'px');
-      });
-    });
-  }
-
-  /* ===== МАГНИТНЫЕ КНОПКИ ===== */
-  if (!prefersReduced && window.matchMedia('(hover: hover)').matches) {
-    document.querySelectorAll('.btn').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.4}px)`;
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
-      });
-    });
-  }
-
-  /* ===== ВОЛНА ПРИ КЛИКЕ ===== */
+  /* ===== RIPPLE ПРИ КЛИКЕ ===== */
   if (!prefersReduced) {
-    document.querySelectorAll('.btn, .theme-toggle, .card, .project').forEach(el => {
+    document.querySelectorAll('.btn, .theme-toggle').forEach(el => {
       el.addEventListener('click', function (e) {
         const rect = this.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
@@ -1206,7 +1097,7 @@
           setTimeout(() => {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
-          }, i * 120);
+          }, i * 100);
           cardObserver.unobserve(entry.target);
         }
       });
@@ -1217,23 +1108,6 @@
       el.style.transform = 'translateY(40px)';
       el.style.transition = 'opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
       cardObserver.observe(el);
-    });
-  }
-
-  /* ===== ПАРАЛЛАКС ФОНА ===== */
-  if (!prefersReduced && window.matchMedia('(hover: hover)').matches) {
-    let ticking = false;
-    window.addEventListener('mousemove', (e) => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const x = (e.clientX / window.innerWidth - 0.5) * 30;
-          const y = (e.clientY / window.innerHeight - 0.5) * 30;
-          document.body.style.setProperty('--parallax-x', x + 'px');
-          document.body.style.setProperty('--parallax-y', y + 'px');
-          ticking = false;
-        });
-        ticking = true;
-      }
     });
   }
 
