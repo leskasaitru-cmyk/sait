@@ -77,7 +77,6 @@
 
   img, svg { max-width: 100%; height: auto; display: block; }
 
-  /* Статичные градиентные пятна (без анимации) */
   body::before,
   body::after {
     content: '';
@@ -178,7 +177,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     flex-shrink: 0;
     padding: 0;
   }
@@ -289,19 +288,23 @@
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
+  /* Зелёная точка — анимация только через opacity, без transform */
   .badge span {
     display: inline-block;
-    width: 8px; height: 8px;
+    width: 8px;
+    height: 8px;
     background: #2ecc71;
     border-radius: 50%;
     margin-right: 8px;
     box-shadow: 0 0 12px #2ecc71;
-    animation: pulse 2s infinite;
     vertical-align: middle;
+    animation: pulse 2s ease-in-out infinite;
+    will-change: opacity;
   }
+
   @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
   }
 
   h1 {
@@ -363,7 +366,7 @@
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background 0.3s ease;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
     border: none;
     cursor: pointer;
     font-family: inherit;
@@ -376,7 +379,6 @@
 
   .btn-primary {
     background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    background-size: 200% 200%;
     color: #fff;
     box-shadow: 0 10px 30px var(--shadow-hover);
   }
@@ -435,6 +437,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 2px 12px var(--shadow);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
   }
 
   .card:hover {
@@ -709,6 +712,11 @@
     h1 .gradient {
       animation-duration: 10s;
     }
+    /* Зелёная точка — статичная на телефоне */
+    .badge span {
+      animation: none;
+      opacity: 1;
+    }
   }
 </style>
 </head>
@@ -802,7 +810,7 @@
       <!-- ============================================= -->
       <!-- ⬇️ ЗАМЕНИ ЗДЕСЬ: ссылка на твой первый сайт ⬇️ -->
       <!-- ============================================= -->
-      <a href="https://ССЫЛКА-НА-ТВОЙ-ПЕРВЫЙ-САЙТ.ru" target="_blank" rel="noopener" class="project">
+      <a href="https://vk.ru/away.php?to=https%3A%2F%2Fleskasaitru-cmyk.github.io%2Fru%2F&utf=1" target="_blank" rel="noopener" class="project">
         <div class="project-preview">
           <div class="preview-ui">
             <div class="preview-bar"><span></span><span></span><span></span></div>
@@ -855,7 +863,7 @@
         <!-- ============================================= -->
         <!-- ⬇️ ЗАМЕНИ ЗДЕСЬ: ссылка на твой Telegram ⬇️ -->
         <!-- ============================================= -->
-        <a href="https://t.me/ТВОЙ_НИК_В_TELEGRAM" target="_blank" rel="noopener" class="btn btn-primary">✈️ Написать в Telegram</a>
+        <a href="https://vk.ru/away.php?to=https%3A%2F%2Ft.me%2FBrozeres&utf=1" target="_blank" rel="noopener" class="btn btn-primary">✈️ Написать в Telegram</a>
         <!-- ⬆️ КОНЕЦ ЗАМЕНЫ ⬆️ -->
 
         <a href="#portfolio" class="btn btn-ghost">Смотреть работы</a>
