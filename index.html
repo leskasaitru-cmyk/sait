@@ -7,12 +7,7 @@
 <meta name="theme-color" content="#0a0a0f">
 <title>Веб-разработчик — Сайты под ключ</title>
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
   :root,
   [data-theme="dark"] {
@@ -26,16 +21,13 @@
     --header-bg: rgba(10, 10, 15, 0.7);
     --shadow: rgba(0, 0, 0, 0.4);
     --shadow-hover: rgba(108, 92, 231, 0.35);
-    --preview-gradient: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
     --tag-bg: rgba(108, 92, 231, 0.15);
     --tag-color: #b8aaff;
     --tag-border: rgba(108, 92, 231, 0.3);
     --glow-1: rgba(108, 92, 231, 0.35);
     --glow-2: rgba(0, 212, 255, 0.35);
     --badge-bg: rgba(108, 92, 231, 0.06);
-    --btn-ghost-hover: #13131c;
     --green: #2ecc71;
-    --green-2: #27ae60;
     --red: #e74c3c;
   }
 
@@ -50,23 +42,17 @@
     --header-bg: rgba(250, 249, 252, 0.8);
     --shadow: rgba(91, 77, 224, 0.08);
     --shadow-hover: rgba(91, 77, 224, 0.18);
-    --preview-gradient: linear-gradient(135deg, #e8e4ff, #d6e8ff, #c9f0ff);
     --tag-bg: rgba(91, 77, 224, 0.1);
     --tag-color: #5b4de0;
     --tag-border: rgba(91, 77, 224, 0.2);
     --glow-1: rgba(139, 124, 255, 0.25);
     --glow-2: rgba(0, 180, 220, 0.18);
     --badge-bg: rgba(91, 77, 224, 0.06);
-    --btn-ghost-hover: #f4f2fb;
     --green: #27ae60;
-    --green-2: #229954;
     --red: #c0392b;
   }
 
-  html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-  }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
   body {
     font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -74,25 +60,19 @@
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
-    position: relative;
     min-height: 100vh;
-    min-height: 100dvh;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
     transition: background-color 0.5s ease, color 0.5s ease;
   }
 
-  img, svg { max-width: 100%; height: auto; display: block; }
-
-  body::before,
-  body::after {
+  body::before, body::after {
     content: '';
     position: fixed;
     border-radius: 50%;
     filter: blur(120px);
     z-index: 0;
     pointer-events: none;
-    transition: background 0.5s ease;
   }
   body::before {
     width: 550px; height: 550px;
@@ -114,7 +94,7 @@
     width: 100%;
   }
 
-  /* ===== ХЕДЕР ===== */
+  /* ХЕДЕР */
   header {
     padding: 24px 0;
     position: sticky;
@@ -165,7 +145,7 @@
   nav a:hover { color: var(--text); }
   nav a:hover::after { width: 100%; }
 
-  /* ===== КНОПКА ТЕМЫ + ТУЛТИП ===== */
+  /* КНОПКА ТЕМЫ */
   .theme-toggle-wrap {
     position: relative;
     display: inline-flex;
@@ -194,7 +174,6 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 20px var(--shadow-hover);
   }
-
   .theme-toggle:active { transform: translateY(0) scale(0.96); }
 
   .theme-toggle svg {
@@ -203,19 +182,16 @@
     position: absolute;
     transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
   }
-
   .theme-toggle .icon-sun {
     opacity: 1;
     transform: rotate(0deg) scale(1);
     color: var(--accent-2);
   }
-
   .theme-toggle .icon-moon {
     opacity: 0;
     transform: rotate(-90deg) scale(0.5);
     color: var(--accent);
   }
-
   [data-theme="light"] .theme-toggle .icon-sun {
     opacity: 0;
     transform: rotate(90deg) scale(0.5);
@@ -225,7 +201,7 @@
     transform: rotate(0deg) scale(1);
   }
 
-  /* ===== ТУЛТИП ===== */
+  /* ТУЛТИП */
   .theme-tooltip {
     position: absolute;
     top: calc(100% + 14px);
@@ -246,7 +222,6 @@
                 visibility 0.3s;
     box-shadow: 0 10px 30px var(--shadow-hover);
     z-index: 9999;
-    letter-spacing: 0.3px;
   }
 
   .theme-tooltip::before {
@@ -270,7 +245,7 @@
     .theme-tooltip { display: none; }
   }
 
-  /* ===== ГЕРОЙ ===== */
+  /* ГЕРОЙ */
   .hero {
     padding: 100px 0 80px;
     text-align: center;
@@ -300,7 +275,6 @@
     vertical-align: middle;
     animation: pulse 2s ease-in-out infinite;
   }
-
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.35; }
@@ -353,15 +327,12 @@
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
     font-family: inherit;
     min-height: 48px;
-    touch-action: manipulation;
     text-align: center;
-    position: relative;
-    overflow: hidden;
   }
 
   .btn-primary {
@@ -370,6 +341,7 @@
     box-shadow: 0 10px 30px var(--shadow-hover);
   }
   .btn-primary:hover {
+    transform: translateY(-3px);
     box-shadow: 0 15px 45px var(--shadow-hover);
   }
 
@@ -379,15 +351,11 @@
     border: 1px solid var(--border);
   }
   .btn-ghost:hover {
-    background: var(--btn-ghost-hover);
+    background: var(--bg-card);
     border-color: var(--accent);
   }
 
-  @keyframes ripple {
-    to { transform: scale(4); opacity: 0; }
-  }
-
-  /* ===== СЕКЦИИ ===== */
+  /* СЕКЦИИ */
   section { padding: 80px 0; }
 
   .section-title {
@@ -409,7 +377,7 @@
     margin: 0 auto;
   }
 
-  /* ===== УСЛУГИ ===== */
+  /* УСЛУГИ */
   .services {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -421,10 +389,8 @@
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 36px 28px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 2px 12px var(--shadow);
     transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 2px 12px var(--shadow);
   }
 
   .card:hover {
@@ -442,12 +408,6 @@
     justify-content: center;
     font-size: 26px;
     margin-bottom: 22px;
-    box-shadow: 0 8px 20px var(--shadow-hover);
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  }
-
-  .card:hover .card-icon {
-    transform: rotate(-8deg) scale(1.1);
   }
 
   .card h3 {
@@ -460,7 +420,7 @@
     font-size: clamp(14px, 2vw, 15px);
   }
 
-  /* ===== СЕКЦИЯ "ЧТО ДЕЛАЮ / НЕ ДЕЛАЮ" ===== */
+  /* ЧТО ДЕЛАЮ / НЕ ДЕЛАЮ */
   .what-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -473,11 +433,6 @@
     border-radius: 20px;
     padding: 32px 28px;
     box-shadow: 0 2px 12px var(--shadow);
-    transition: border-color 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
-  }
-
-  .what-box:hover {
-    box-shadow: 0 20px 50px var(--shadow-hover);
   }
 
   .what-yes:hover { border-color: var(--green); }
@@ -499,30 +454,19 @@
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    flex-shrink: 0;
   }
 
   .what-yes .what-icon {
     background: linear-gradient(135deg, #2ecc71, #27ae60);
-    box-shadow: 0 6px 16px rgba(46, 204, 113, 0.3);
   }
 
   .what-no .what-icon {
     background: linear-gradient(135deg, #e74c3c, #c0392b);
-    box-shadow: 0 6px 16px rgba(231, 76, 60, 0.3);
   }
 
-  .what-head h3 {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-  }
+  .what-head h3 { font-size: 22px; font-weight: 700; }
 
-  .what-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 20px;
-  }
+  .what-list { list-style: none; margin: 0 0 20px; }
 
   .what-list li {
     position: relative;
@@ -549,24 +493,10 @@
     color: var(--red);
     font-weight: 700;
     font-size: 17px;
-    line-height: 1;
     top: 10px;
   }
 
-  .what-note {
-    font-size: 13px;
-    color: var(--text-muted);
-    background: var(--badge-bg);
-    border-radius: 10px;
-    padding: 12px 14px;
-    line-height: 1.5;
-    border: 1px solid var(--border);
-  }
-
-  .what-yes .what-note { border-color: rgba(46, 204, 113, 0.25); }
-  .what-no .what-note { border-color: rgba(231, 76, 60, 0.25); }
-
-  /* ===== СЕКЦИЯ "СРОКИ" ===== */
+  /* СРОКИ */
   .speed-price {
     font-size: clamp(22px, 3vw, 30px);
     font-weight: 800;
@@ -575,30 +505,17 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-top: 10px;
-    letter-spacing: -0.5px;
   }
 
-  .speed-sub {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 4px;
-  }
+  .speed-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 
-  /* ===== ЦЕНЫ ===== */
+  /* ЦЕНЫ */
   .price-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     max-width: 900px;
     margin: 0 auto;
-  }
-
-  .price-free {
-    grid-column: 1 / -1;
-    justify-self: center;
-    max-width: 420px;
-    width: 100%;
-    margin-top: 12px;
   }
 
   .price-item {
@@ -620,11 +537,7 @@
     transform: translateY(-3px);
   }
 
-  .price-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-  }
+  .price-name { font-size: 15px; font-weight: 600; }
 
   .price-value {
     font-size: 17px;
@@ -636,13 +549,15 @@
     white-space: nowrap;
   }
 
-  /* Зелёный акцент для бесплатной публикации */
   .price-free {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 420px;
+    width: 100%;
+    margin-top: 12px;
     border-color: rgba(46, 204, 113, 0.3);
   }
-  .price-free:hover {
-    border-color: var(--green);
-  }
+  .price-free:hover { border-color: var(--green); }
   .price-free .price-value {
     background: linear-gradient(135deg, #2ecc71, #27ae60);
     -webkit-background-clip: text;
@@ -657,12 +572,9 @@
     margin-top: 24px;
   }
 
-  .price-note a {
-    color: var(--accent-2);
-    text-decoration: none;
-  }
+  .price-note a { color: var(--accent-2); text-decoration: none; }
 
-  /* ===== ПОРТФОЛИО ===== */
+  /* ПОРТФОЛИО */
   .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -690,55 +602,24 @@
 
   .project-preview {
     height: 200px;
-    background: var(--preview-gradient);
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    color: #fff;
+    font-size: 60px;
   }
 
-  .project-preview .preview-ui {
-    position: relative;
-    z-index: 1;
-    width: 70%;
-    max-width: 260px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 10px;
-    padding: 12px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-  [data-theme="light"] .project-preview .preview-ui {
-    background: rgba(255,255,255,0.75);
-    border-color: rgba(91, 77, 224, 0.15);
+  .project-preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.2), transparent 50%);
   }
 
-  .preview-bar {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 10px;
-  }
-  .preview-bar span {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-  }
-  [data-theme="light"] .preview-bar span { background: rgba(91, 77, 224, 0.25); }
-
-  .preview-line {
-    height: 6px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 4px;
-    margin-bottom: 6px;
-  }
-  [data-theme="light"] .preview-line { background: rgba(91, 77, 224, 0.15); }
-  .preview-line.short { width: 60%; }
-  .preview-line.accent {
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    width: 40%;
-  }
+  .project-preview .icon { position: relative; z-index: 1; }
 
   .project-info { padding: 24px 26px 28px; }
 
@@ -751,12 +632,7 @@
     flex-wrap: wrap;
   }
 
-  .project-info h3 .arrow {
-    color: var(--accent-2);
-    transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  }
-
-  .project:hover .arrow { transform: translate(4px, -4px) rotate(45deg); }
+  .project-info h3 .arrow { color: var(--accent-2); }
 
   .project-info p {
     color: var(--text-muted);
@@ -764,11 +640,7 @@
     margin-bottom: 14px;
   }
 
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
   .tag {
     font-size: 12px;
@@ -780,7 +652,7 @@
     font-weight: 500;
   }
 
-  /* ===== CTA ===== */
+  /* CTA */
   .cta-box {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -788,11 +660,6 @@
     padding: 64px 40px;
     text-align: center;
     box-shadow: 0 4px 24px var(--shadow);
-    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.4s ease;
-  }
-
-  .cta-box:hover {
-    box-shadow: 0 20px 60px var(--shadow-hover);
   }
 
   .cta-box h2 {
@@ -809,17 +676,10 @@
     font-size: clamp(14px, 2vw, 16px);
   }
 
-  .cta-sub {
-    font-size: 14px !important;
-    color: var(--text-muted);
-    margin-bottom: 28px !important;
-  }
+  .cta-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+  .cta-sub strong { color: var(--accent-2); }
 
-  .cta-sub strong {
-    color: var(--accent-2);
-  }
-
-  /* ===== ФУТЕР ===== */
+  /* ФУТЕР */
   footer {
     padding: 40px 0;
     padding-bottom: calc(40px + env(safe-area-inset-bottom));
@@ -830,23 +690,11 @@
     margin-top: 40px;
   }
 
-  /* ===== АДАПТИВНОСТЬ ===== */
-  @media (min-width: 1400px) {
-    .container { max-width: 1240px; }
-    .hero { padding: 130px 0 100px; }
-    section { padding: 100px 0; }
-  }
-
-  @media (max-width: 1024px) {
-    nav { gap: 16px; }
-    nav a { font-size: 14px; }
-  }
-
+  /* АДАПТИВ */
   @media (max-width: 768px) {
     .container { padding: 0 20px; }
     nav { gap: 20px; }
     nav a { font-size: 14px; }
-    .header-right { gap: 16px; }
 
     .hero { padding: 60px 0 50px; }
     section { padding: 60px 0; }
@@ -857,75 +705,37 @@
       gap: 20px;
     }
 
-    /* Цены: одна колонка на планшетах/телефонах */
-    .price-list {
-      grid-template-columns: 1fr;
-      max-width: 480px;
-    }
-    .price-free {
-      max-width: 100%;
-      margin-top: 0;
-    }
+    .price-list { grid-template-columns: 1fr; max-width: 480px; }
+    .price-free { max-width: 100%; margin-top: 0; }
 
-    .cta-box { padding: 48px 28px; border-radius: 22px; }
-    .card { padding: 30px 24px; }
-    .project-preview { height: 180px; }
-    .what-box { padding: 26px 22px; }
-    .what-head h3 { font-size: 20px; }
-    .what-list li { font-size: 14px; }
+    .cta-box { padding: 48px 28px; }
   }
 
   @media (max-width: 640px) {
     .container { padding: 0 16px; }
     header { padding: 14px 0; padding-top: calc(14px + env(safe-area-inset-top)); }
     nav { display: none; }
-    .theme-toggle { width: 40px; height: 40px; border-radius: 10px; }
-    .theme-toggle svg { width: 20px; height: 20px; }
+    .theme-toggle { width: 40px; height: 40px; }
 
     .hero { padding: 50px 0 40px; }
     section { padding: 50px 0; }
-    h1 { letter-spacing: -1px; margin: 18px 0; }
-    .hero p { margin-bottom: 30px; }
+    h1 { letter-spacing: -1px; }
+
     .badge { font-size: 12px; padding: 6px 14px; margin-bottom: 8px; }
     .badge + .badge { margin-left: 0; display: block; width: fit-content; margin: 0 auto 8px; }
 
-    .btn-group { flex-direction: column; width: 100%; gap: 12px; }
-    .btn { width: 100%; padding: 16px 24px; font-size: 15px; }
+    .btn-group { flex-direction: column; width: 100%; }
+    .btn { width: 100%; }
 
-    .section-title { margin-bottom: 32px; }
-    .card { padding: 26px 22px; }
-    .card-icon { width: 50px; height: 50px; font-size: 22px; margin-bottom: 18px; }
-    .project-preview { height: 160px; }
-    .project-info { padding: 20px 20px 24px; }
-    .cta-box { padding: 40px 20px; border-radius: 20px; }
-    footer { padding: 30px 0; padding-bottom: calc(30px + env(safe-area-inset-bottom)); font-size: 13px; }
-  }
-
-  @media (max-width: 380px) {
-    .container { padding: 0 14px; }
-    h1 { letter-spacing: -0.5px; }
-    .btn { padding: 14px 20px; font-size: 14px; }
-    .card { padding: 22px 18px; }
+    .project-preview { height: 160px; font-size: 50px; }
+    .cta-box { padding: 40px 20px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
     }
-  }
-
-  /* Отключаем тяжёлые эффекты на мобильных */
-  @media (max-width: 768px), (hover: none) {
-    body::before,
-    body::after {
-      filter: blur(100px);
-      opacity: 0.6;
-    }
-    .card:hover .card-icon { transform: none; }
-    h1 .gradient { animation-duration: 10s; }
-    .badge span { animation: none; opacity: 1; }
   }
 </style>
 </head>
@@ -1036,9 +846,6 @@
           <li>Свадебный сайт / приглашение</li>
           <li>Промо-страницу мероприятия</li>
         </ul>
-        <p class="what-note">
-          💡 Все сайты работают на HTML, CSS и JavaScript. Публикую <strong>бесплатно</strong> — быстро грузятся, ничего не надо оплачивать.
-        </p>
       </div>
 
       <div class="what-box what-no">
@@ -1054,9 +861,6 @@
           <li>Блог с админкой</li>
           <li>Сложные веб-сервисы</li>
         </ul>
-        <p class="what-note">
-          💬 Для таких задач нужен backend-разработчик. Могу порекомендовать проверенного специалиста.
-        </p>
       </div>
     </div>
   </div>
@@ -1096,7 +900,7 @@
         <div class="card-icon">🛍</div>
         <h3>Каталог-витрина</h3>
         <p class="speed-price">от 4 дней</p>
-        <p class="speed-sub">С фильтрами и заказом в Telegram</p>
+        <p class="speed-sub">С фильтрами и заказом</p>
       </div>
     </div>
   </div>
@@ -1111,10 +915,6 @@
     </div>
 
     <div class="price-list">
-
-      <!-- ============================================= -->
-      <!-- 💰 ЦЕНЫ — ПРОВЕРЬ И ИЗМЕНИ ПОД СЕБЯ 💰 -->
-      <!-- ============================================= -->
       <div class="price-item">
         <span class="price-name">🪪 Сайт-визитка</span>
         <span class="price-value">от 3 000 ₽</span>
@@ -1130,13 +930,10 @@
         <span class="price-value">от 8 000 ₽</span>
       </div>
 
-      <!-- Публикация — отдельно, снизу по центру -->
       <div class="price-item price-free">
         <span class="price-name">🌐 Публикация в интернете</span>
         <span class="price-value">Бесплатно</span>
       </div>
-      <!-- ============================================= -->
-
     </div>
 
     <p class="price-note">
@@ -1150,48 +947,137 @@
   <div class="container">
     <div class="section-title">
       <h2>Мои работы</h2>
-      <p>Реальные проекты, которые уже работают</p>
+      <p>Нажмите на карточку — откроется подробное описание проекта</p>
     </div>
 
     <div class="portfolio-grid">
-      
-      <a href="https://vk.ru/away.php?to=https%3A%2F%2Fleskasaitru-cmyk.github.io%2Fru%2F&utf=1" target="_blank" rel="noopener" class="project">
-        <div class="project-preview">
-          <div class="preview-ui">
-            <div class="preview-bar"><span></span><span></span><span></span></div>
-            <div class="preview-line accent"></div>
-            <div class="preview-line"></div>
-            <div class="preview-line short"></div>
-          </div>
-        </div>
+
+      <!-- 1. САЙТ-ВИЗИТКА -->
+      <a href="project-1.html" class="project">
+        <div class="project-preview"><span class="icon">🪪</span></div>
         <div class="project-info">
-          <h3>Мой первый сайт <span class="arrow">↗</span></h3>
-          <p>Полностью разработанный проект под ключ — дизайн, вёрстка и функциональность.</p>
+          <h3>Сайт-визитка <span class="arrow">↗</span></h3>
+          <p>Классическая визитка для мастера или специалиста — с услугами, ценами и контактами.</p>
           <div class="tags">
             <span class="tag">HTML</span>
             <span class="tag">CSS</span>
-            <span class="tag">JavaScript</span>
+            <span class="tag">Адаптив</span>
           </div>
         </div>
       </a>
-     
 
-      <div class="project" style="opacity:.6; cursor:default;">
-        <div class="project-preview">
-          <div class="preview-ui">
-            <div class="preview-bar"><span></span><span></span><span></span></div>
-            <div class="preview-line accent"></div>
-            <div class="preview-line short"></div>
-          </div>
-        </div>
+      <!-- 2. ЛЕНДИНГ -->
+      <a href="project-2.html" class="project">
+        <div class="project-preview"><span class="icon">🚀</span></div>
         <div class="project-info">
-          <h3>Скоро здесь будет новый проект</h3>
-          <p>Сейчас работаю над следующими сайтами. Следи за обновлениями!</p>
+          <h3>Лендинг <span class="arrow">↗</span></h3>
+          <p>Продающая страница для онлайн-школы английского языка в тёмном премиум-стиле.</p>
           <div class="tags">
-            <span class="tag">В разработке</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Landing</span>
           </div>
         </div>
-      </div>
+      </a>
+
+      <!-- 3. ПОРТФОЛИО -->
+      <a href="project-3.html" class="project">
+        <div class="project-preview"><span class="icon">📸</span></div>
+        <div class="project-info">
+          <h3>Портфолио фотографа <span class="arrow">↗</span></h3>
+          <p>Сайт для свадебного фотографа — галерея работ, услуги, контакты.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JS</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4. КОРПОРАТИВНЫЙ -->
+      <a href="project-4.html" class="project">
+        <div class="project-preview"><span class="icon">🏢</span></div>
+        <div class="project-info">
+          <h3>Корпоративный сайт <span class="arrow">↗</span></h3>
+          <p>Многостраничник для строительной компании — 3 страницы, светлый деловой стиль.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Multipage</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5. САЙТ-МЕНЮ -->
+      <a href="project-5.html" class="project">
+        <div class="project-preview"><span class="icon">🍰</span></div>
+        <div class="project-info">
+          <h3>Сайт-меню кофейни <span class="arrow">↗</span></h3>
+          <p>Уютный сайт с меню и категориями — кофе, чай, десерты, завтраки.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JS</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6. КАТАЛОГ-ВИТРИНА -->
+      <a href="project-6.html" class="project">
+        <div class="project-preview"><span class="icon">🛍</span></div>
+        <div class="project-info">
+          <h3>Каталог-витрина <span class="arrow">↗</span></h3>
+          <p>Магазин одежды в минималистичном стиле — фильтры, карточки товаров, заказ.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JS</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 7. САЙТ-ЗАПИСЬ -->
+      <a href="project-7.html" class="project">
+        <div class="project-preview"><span class="icon">📅</span></div>
+        <div class="project-info">
+          <h3>Сайт-запись барбершопа <span class="arrow">↗</span></h3>
+          <p>Брутальный сайт барбершопа с услугами, мастерами и записью.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Booking</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 8. СВАДЕБНЫЙ -->
+      <a href="project-8.html" class="project">
+        <div class="project-preview"><span class="icon">💍</span></div>
+        <div class="project-info">
+          <h3>Свадебный сайт <span class="arrow">↗</span></h3>
+          <p>Романтичный сайт-приглашение с историей пары, программой дня и RSVP.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Wedding</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 9. ПРОМО -->
+      <a href="project-9.html" class="project">
+        <div class="project-preview"><span class="icon">🎉</span></div>
+        <div class="project-info">
+          <h3>Промо-страница фестиваля <span class="arrow">↗</span></h3>
+          <p>Яркий сайт музыкального фестиваля — лайн-ап, билеты, счётчик, FAQ.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JS</span>
+          </div>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
@@ -1201,14 +1087,10 @@
   <div class="container">
     <div class="cta-box">
       <h2>Нужен сайт?</h2>
-      <p>Расскажите о своей идее — сделаю современный сайт под ключ: дизайн, вёрстка, интерактивность. Работаю быстро и качественно.</p>
+      <p>Расскажите о своей идее — сделаю современный сайт под ключ: дизайн, вёрстка, интерактивность.</p>
       <p class="cta-sub">⚡ Средний срок — <strong>2–3 дня</strong>. Публикация — бесплатно.</p>
       <div class="btn-group">
-
-        
-        <a href="https://vk.ru/away.php?to=https%3A%2F%2Ft.me%2FBrozeres&utf=1" target="_blank" rel="noopener" class="btn btn-primary">✈️ Написать в Telegram</a>
-        
-
+        <a href="https://t.me/ТВОЙ_НИК_В_TELEGRAM" target="_blank" rel="noopener" class="btn btn-primary">✈️ Написать в Telegram</a>
         <a href="#portfolio" class="btn btn-ghost">Смотреть работы</a>
       </div>
     </div>
@@ -1218,20 +1100,19 @@
 <!-- ФУТЕР -->
 <footer>
   <div class="container">
-    © 2026 — Веб-разработка под ключ. Сделано с ❤️
+    © 2026 — Веб-разработка под ключ. Демо-сайт для портфолио.
   </div>
 </footer>
 
 <script>
-  /* ===== ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ===== */
+  /* ТЕМА */
   const themeToggle = document.getElementById('themeToggle');
   const root = document.documentElement;
   const metaThemeColor = document.querySelector('meta[name="theme-color"]');
   const tooltip = document.querySelector('.theme-tooltip');
 
   const savedTheme = localStorage.getItem('theme');
-  const initialTheme = savedTheme ? savedTheme : 'dark';
-  applyTheme(initialTheme);
+  applyTheme(savedTheme || 'dark');
 
   themeToggle.addEventListener('click', () => {
     const current = root.getAttribute('data-theme');
@@ -1250,9 +1131,9 @@
     }
   }
 
+  /* ПОЯВЛЕНИЕ СЕКЦИЙ */
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ===== ПОЯВЛЕНИЕ СЕКЦИЙ ===== */
   if (!prefersReduced && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1267,7 +1148,7 @@
     document.querySelectorAll('section:not(.hero)').forEach(section => {
       section.style.opacity = '0';
       section.style.transform = 'translateY(40px)';
-      section.style.transition = 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
+      section.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
       observer.observe(section);
     });
 
@@ -1286,45 +1167,12 @@
     document.querySelectorAll('.card, .project, .price-item, .what-box').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
-      el.style.transition = 'opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+      el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
       cardObserver.observe(el);
     });
   }
 
-  /* ===== RIPPLE ПРИ КЛИКЕ ===== */
-  if (!prefersReduced) {
-    document.querySelectorAll('.btn, .theme-toggle').forEach(el => {
-      el.addEventListener('click', function (e) {
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-
-        const ripple = document.createElement('span');
-        ripple.style.cssText = `
-          position: absolute;
-          width: ${size}px;
-          height: ${size}px;
-          left: ${x}px;
-          top: ${y}px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(255,255,255,0.5), transparent 70%);
-          pointer-events: none;
-          transform: scale(0);
-          animation: ripple 0.7s ease-out;
-          z-index: 10;
-        `;
-        if (getComputedStyle(this).position === 'static') {
-          this.style.position = 'relative';
-        }
-        this.style.overflow = 'hidden';
-        this.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 700);
-      });
-    });
-  }
-
-  /* ===== СКРОЛЛ ПО ЯКОРЯМ ===== */
+  /* СКРОЛЛ ПО ЯКОРЯМ */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const target = document.querySelector(this.getAttribute('href'));
