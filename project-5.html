@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0f">
+<title>Сайт-меню — Проект №5</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root, [data-theme="dark"] {
+    --bg: #0a0a0f; --bg-card: #13131c; --text: #e8e8f0; --text-muted: #8a8a9e;
+    --accent: #6c5ce7; --accent-2: #00d4ff; --border: #23232f;
+    --header-bg: rgba(10,10,15,0.7); --shadow-hover: rgba(108,92,231,0.35);
+    --tag-bg: rgba(108,92,231,0.15); --tag-color: #b8aaff; --tag-border: rgba(108,92,231,0.3);
+    --glow-1: rgba(108,92,231,0.35); --glow-2: rgba(0,212,255,0.35); --badge-bg: rgba(108,92,231,0.06);
+  }
+  [data-theme="light"] {
+    --bg: #faf9fc; --bg-card: #ffffff; --text: #1a1a2e; --text-muted: #6a6a80;
+    --accent: #5b4de0; --accent-2: #0091c2; --border: #ece9f5;
+    --header-bg: rgba(250,249,252,0.8); --shadow-hover: rgba(91,77,224,0.18);
+    --tag-bg: rgba(91,77,224,0.1); --tag-color: #5b4de0; --tag-border: rgba(91,77,224,0.2);
+    --glow-1: rgba(139,124,255,0.25); --glow-2: rgba(0,180,220,0.18); --badge-bg: rgba(91,77,224,0.06);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; min-height: 100vh; transition: all 0.5s ease; }
+  body::before, body::after { content: ''; position: fixed; border-radius: 50%; filter: blur(120px); z-index: 0; pointer-events: none; }
+  body::before { width: 550px; height: 550px; background: var(--glow-1); top: -220px; left: -180px; }
+  body::after { width: 500px; height: 500px; background: var(--glow-2); bottom: -200px; right: -180px; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  header { padding: 24px 0; position: sticky; top: 0; backdrop-filter: blur(20px); background: var(--header-bg); border-bottom: 1px solid var(--border); z-index: 100; }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .back-link { display: inline-flex; align-items: center; gap: 10px; color: var(--text-muted); text-decoration: none; font-size: 15px; font-weight: 500; }
+  .back-link:hover { color: var(--accent); }
+  .theme-toggle { position: relative; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+  .theme-toggle svg { width: 22px; height: 22px; position: absolute; transition: all 0.5s ease; }
+  .theme-toggle .icon-sun { opacity: 1; color: var(--accent-2); }
+  .theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.5); color: var(--accent); }
+  [data-theme="light"] .theme-toggle .icon-sun { opacity: 0; transform: rotate(90deg) scale(0.5); }
+  [data-theme="light"] .theme-toggle .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+  .project-hero { padding: 80px 0 60px; }
+  .project-badge { display: inline-block; padding: 8px 18px; border: 1px solid var(--border); border-radius: 100px; font-size: 13px; color: var(--text-muted); margin-bottom: 24px; background: var(--badge-bg); }
+  .project-hero h1 { font-size: clamp(32px, 6vw, 56px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
+  .project-hero h1 .gradient { background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .project-hero p { font-size: clamp(15px, 2vw, 19px); color: var(--text-muted); max-width: 700px; margin-bottom: 32px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .tag { font-size: 13px; padding: 6px 14px; border-radius: 100px; background: var(--tag-bg); color: var(--tag-color); border: 1px solid var(--tag-border); font-weight: 500; }
+  .project-preview { aspect-ratio: 16/9; border-radius: 24px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: flex; align-items: center; justify-content: center; margin-bottom: 60px; color: #fff; font-size: 120px; overflow: hidden; box-shadow: 0 30px 70px var(--shadow-hover); }
+  .open-site { display: flex; justify-content: center; margin-bottom: 80px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 20px 48px; border-radius: 14px; font-size: 17px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 15px 40px var(--shadow-hover); }
+  .btn-primary:hover { transform: translateY(-4px); }
+  .info-section { margin-bottom: 60px; }
+  .info-section h2 { font-size: clamp(22px, 3.5vw, 32px); font-weight: 800; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .info-section h2::before { content: ''; width: 4px; height: 28px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-radius: 4px; }
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .info-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: all 0.3s ease; }
+  .info-item:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .info-label { font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 600; }
+  .info-value { font-size: 17px; font-weight: 700; }
+  .features-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .feature-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; gap: 16px; transition: all 0.3s ease; }
+  .feature-item:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .feature-icon { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; flex-shrink: 0; }
+  .feature-text h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .feature-text p { color: var(--text-muted); font-size: 14px; }
+  .project-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--border); }
+  .nav-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px; transition: all 0.3s ease; }
+  .nav-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .nav-card.next { text-align: right; align-items: flex-end; }
+  .nav-label { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+  .nav-title { font-size: 17px; font-weight: 700; }
+  footer { padding: 40px 0; text-align: center; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border); margin-top: 60px; }
+  @media (max-width: 640px) {
+    .container { padding: 0 16px; }
+    .project-hero { padding: 40px 0 30px; }
+    .project-preview { font-size: 60px; border-radius: 16px; }
+    .btn { width: 100%; }
+    .project-nav { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="back-link">← Назад к визитке</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="project-hero">
+  <div class="container">
+    <div class="project-badge">📁 Проект №5 · Сайт-меню</div>
+    <h1>Сайт-меню <span class="gradient">кофейни «Утро»</span></h1>
+    <p>Уютный сайт кофейни с меню и переключением категорий. Тёплая кремовая палитра, интерактив на JavaScript.</p>
+    <div class="project-tags">
+      <span class="tag">HTML</span>
+      <span class="tag">CSS</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">Categories</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="project-preview"><span class="icon">🍰</span></div>
+
+    <div class="open-site">
+      <a href="https://leskasaitru-cmyk.github.io/menu/" target="_blank" rel="noopener" class="btn btn-primary">
+        Открыть сайт <span class="arrow">↗</span>
+      </a>
+    </div>
+
+    <div class="info-section">
+      <h2>Информация о проекте</h2>
+      <div class="info-grid">
+        <div class="info-item"><div class="info-label">Клиент</div><div class="info-value">Кофейня «Утро»</div></div>
+        <div class="info-item"><div class="info-label">Срок разработки</div><div class="info-value">1 день</div></div>
+        <div class="info-item"><div class="info-label">Формат</div><div class="info-value">Одностраничник</div></div>
+        <div class="info-item"><div class="info-label">Год</div><div class="info-value">2026</div></div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h2>Что внутри</h2>
+      <div class="features-list">
+        <div class="feature-item"><div class="feature-icon">☕</div><div class="feature-text"><h3>4 категории меню</h3><p>Кофе, чай, десерты, завтраки — с переключением.</p></div></div>
+        <div class="feature-item"><div class="feature-icon">🎨</div><div class="feature-text"><h3>Тёплый стиль</h3><p>Кремово-коричневая палитра, уютная атмосфера.</p></div></div>
+        <div class="feature-item"><div class="feature-icon">🏷</div><div class="feature-text"><h3>Теги блюд</h3><p>«Хит», «Веган» — для акцентов на карточках.</p></div></div>
+        <div class="feature-item"><div class="feature-icon">✈️</div><div class="feature-text"><h3>Заказ в Telegram</h3><p>Кнопка ведёт в чат кофейни.</p></div></div>
+      </div>
+    </div>
+
+    <div class="project-nav">
+      <a href="project-4.html" class="nav-card"><span class="nav-label">← Назад</span><span class="nav-title">Корпоративный</span></a>
+      <a href="project-6.html" class="nav-card next"><span class="nav-label">Следующий →</span><span class="nav-title">Каталог-витрина</span></a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="container">© 2026 — Веб-разработчик · Демо-сайт для портфолио</div></footer>
+
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+  applyTheme(localStorage.getItem('theme') || 'dark');
+  themeToggle.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(next); localStorage.setItem('theme', next);
+  });
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    if (metaThemeColor) metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0f' : '#faf9fc');
+  }
+</script>
+</body>
+</html>
