@@ -22,19 +22,19 @@
     --glow-1: rgba(139,124,255,0.25); --glow-2: rgba(0,180,220,0.18); --badge-bg: rgba(91,77,224,0.06);
   }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; min-height: 100vh; transition: background-color 0.5s ease, color 0.5s ease; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; min-height: 100vh; padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); transition: background-color 0.5s ease, color 0.5s ease; }
   body::before, body::after { content: ''; position: fixed; border-radius: 50%; filter: blur(120px); z-index: 0; pointer-events: none; }
   body::before { width: 550px; height: 550px; background: var(--glow-1); top: -220px; left: -180px; }
   body::after { width: 500px; height: 500px; background: var(--glow-2); bottom: -200px; right: -180px; }
   .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; width: 100%; }
-  header { padding: 24px 0; position: sticky; top: 0; backdrop-filter: blur(20px); background: var(--header-bg); border-bottom: 1px solid var(--border); z-index: 100; transition: background-color 0.5s ease; }
+  header { padding: 24px 0; position: sticky; top: 0; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: var(--header-bg); border-bottom: 1px solid var(--border); z-index: 100; padding-top: calc(24px + env(safe-area-inset-top)); transition: background-color 0.5s ease, border-color 0.5s ease; }
   .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
   .back-link { display: inline-flex; align-items: center; gap: 10px; color: var(--text-muted); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.3s; }
   .back-link:hover { color: var(--accent); }
-  .back-link:hover .arrow { transform: translateX(-4px); }
   .back-link .arrow { transition: transform 0.3s ease; }
-  .theme-toggle { position: relative; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; transition: all 0.3s ease; }
-  .theme-toggle:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .back-link:hover .arrow { transform: translateX(-4px); }
+  .theme-toggle { position: relative; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+  .theme-toggle:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px var(--shadow-hover); }
   .theme-toggle svg { width: 22px; height: 22px; position: absolute; transition: transform 0.5s ease, opacity 0.3s ease; }
   .theme-toggle .icon-sun { opacity: 1; color: var(--accent-2); }
   .theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.5); color: var(--accent); }
@@ -51,21 +51,21 @@
   .project-preview::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.2), transparent 50%); }
   .project-preview .icon { position: relative; z-index: 1; opacity: 0.9; }
   .open-site { display: flex; justify-content: center; margin-bottom: 80px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 20px 48px; border-radius: 14px; font-size: 17px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; min-height: 60px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 20px 48px; border-radius: 14px; font-size: 17px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; min-height: 60px; text-align: center; }
   .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 15px 40px var(--shadow-hover); }
   .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 20px 55px var(--shadow-hover); }
   .btn-primary .arrow { font-size: 20px; transition: transform 0.3s ease; }
   .btn-primary:hover .arrow { transform: translate(4px, -4px); }
   .info-section { margin-bottom: 60px; }
   .info-section h2 { font-size: clamp(22px, 3.5vw, 32px); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-  .info-section h2::before { content: ''; width: 4px; height: 28px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-radius: 4px; }
-  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .info-section h2::before { content: ''; width: 4px; height: 28px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-radius: 4px; flex-shrink: 0; }
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
   .info-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: 0 2px 12px var(--shadow); transition: all 0.3s ease; }
   .info-item:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 15px 40px var(--shadow-hover); }
   .info-label { font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 600; }
   .info-value { font-size: 17px; font-weight: 700; }
   .features-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-  .feature-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; align-items: flex-start; gap: 16px; transition: all 0.3s ease; }
+  .feature-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; align-items: flex-start; gap: 16px; box-shadow: 0 2px 12px var(--shadow); transition: all 0.3s ease; }
   .feature-item:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 15px 40px var(--shadow-hover); }
   .feature-icon { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; flex-shrink: 0; }
   .feature-text h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
@@ -76,66 +76,93 @@
   .nav-card.next { text-align: right; align-items: flex-end; }
   .nav-label { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
   .nav-title { font-size: 17px; font-weight: 700; }
-  footer { padding: 40px 0; text-align: center; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border); margin-top: 60px; }
+  footer { padding: 40px 0; padding-bottom: calc(40px + env(safe-area-inset-bottom)); text-align: center; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border); margin-top: 60px; }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .project-hero { padding: 50px 0 40px; }
+    .project-preview { font-size: 80px; margin-bottom: 40px; }
+    .open-site { margin-bottom: 60px; }
+    .info-section { margin-bottom: 40px; }
+    .project-nav { margin-top: 60px; }
+  }
   @media (max-width: 640px) {
     .container { padding: 0 16px; }
+    header { padding: 14px 0; padding-top: calc(14px + env(safe-area-inset-top)); }
+    .theme-toggle { width: 40px; height: 40px; }
+    .back-link { font-size: 14px; }
     .project-hero { padding: 40px 0 30px; }
-    .project-preview { font-size: 60px; border-radius: 16px; }
+    .project-preview { font-size: 60px; border-radius: 16px; margin-bottom: 32px; }
     .btn { width: 100%; padding: 18px 32px; font-size: 16px; }
     .project-nav { grid-template-columns: 1fr; }
+    .info-item, .feature-item { padding: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 </style>
 </head>
 <body>
 
+<!-- ХЕДЕР -->
 <header>
   <div class="container header-inner">
     <a href="index.html" class="back-link"><span class="arrow">←</span> Назад к визитке</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
     </button>
   </div>
 </header>
 
+<!-- ГЕРОЙ ПРОЕКТА -->
 <section class="project-hero">
   <div class="container">
     <div class="project-badge">📁 Проект №1 · Сайт-визитка</div>
-    <h1>Сайт-визитка <span class="gradient">для мастера</span></h1>
-    <p>Классическая одностраничная визитка для мастера или специалиста. Услуги, цены, галерея работ, контакты и запись через Telegram.</p>
+    <h1>Моя визитка <span class="gradient">для портфолио</span></h1>
+    <p>Сайт-визитка, который вы сейчас смотрите. Служит главной страницей моего портфолио — здесь собраны все 9 работ, цены, сроки и границы. Сделан на HTML, CSS и JavaScript.</p>
     <div class="project-tags">
       <span class="tag">HTML</span>
       <span class="tag">CSS</span>
-      <span class="tag">Адаптив</span>
       <span class="tag">JavaScript</span>
+      <span class="tag">Адаптив</span>
     </div>
   </div>
 </section>
 
+<!-- ПРЕВЬЮ И КНОПКА -->
 <section>
   <div class="container">
-    <div class="project-preview"><span class="icon">🪪</span></div>
+    <div class="project-preview">
+      <span class="icon">🪪</span>
+    </div>
 
     <div class="open-site">
-      <a href="https://leskasaitru-cmyk.github.io/sait/" target="_blank" rel="noopener" class="btn btn-primary">
+      <a href="https://leskasaitru-cmyk.github.io/vizidka/" target="_blank" rel="noopener" class="btn btn-primary">
         Открыть сайт <span class="arrow">↗</span>
       </a>
     </div>
 
+    <!-- ИНФОРМАЦИЯ -->
     <div class="info-section">
       <h2>Информация о проекте</h2>
       <div class="info-grid">
         <div class="info-item">
-          <div class="info-label">Клиент</div>
+          <div class="info-label">Автор</div>
           <div class="info-value">Я</div>
         </div>
         <div class="info-item">
           <div class="info-label">Срок разработки</div>
-          <div class="info-value">1 день</div>
+          <div class="info-value">3 дня</div>
         </div>
         <div class="info-item">
           <div class="info-label">Формат</div>
-          <div class="info-value">Одностраничник</div>
+          <div class="info-value">Демо-проект</div>
         </div>
         <div class="info-item">
           <div class="info-label">Год</div>
@@ -144,50 +171,125 @@
       </div>
     </div>
 
+    <!-- ЧТО ВНУТРИ -->
     <div class="info-section">
       <h2>Что внутри</h2>
       <div class="features-list">
         <div class="feature-item">
           <div class="feature-icon">🎨</div>
-          <div class="feature-text"><h3>Уникальный дизайн</h3><p>Стильная тема с акцентом на услуги мастера.</p></div>
+          <div class="feature-text">
+            <h3>Уникальный дизайн</h3>
+            <p>Собственный стиль, не из шаблонов.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🌗</div>
+          <div class="feature-text">
+            <h3>Тёмная / светлая тема</h3>
+            <p>Переключение с сохранением выбора.</p>
+          </div>
         </div>
         <div class="feature-item">
           <div class="feature-icon">📱</div>
-          <div class="feature-text"><h3>Адаптив под телефон</h3><p>Корректно отображается на всех устройствах.</p></div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">💬</div>
-          <div class="feature-text"><h3>Запись в Telegram</h3><p>Кнопка ведёт прямо в чат мастера.</p></div>
+          <div class="feature-text">
+            <h3>Адаптив под телефон</h3>
+            <p>Корректно на всех устройствах.</p>
+          </div>
         </div>
         <div class="feature-item">
           <div class="feature-icon">⚡</div>
-          <div class="feature-text"><h3>Быстрая загрузка</h3><p>Лёгкий код, мгновенный отклик.</p></div>
+          <div class="feature-text">
+            <h3>Плавные анимации</h3>
+            <p>Появление секций при скролле.</p>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- НАВИГАЦИЯ -->
     <div class="project-nav">
-      <a href="index.html" class="nav-card"><span class="nav-label">← Назад</span><span class="nav-title">Все проекты</span></a>
-      <a href="project-2.html" class="nav-card next"><span class="nav-label">Следующий →</span><span class="nav-title">Лендинг</span></a>
+      <a href="project-9.html" class="nav-card">
+        <span class="nav-label">← Назад</span>
+        <span class="nav-title">Промо-страница</span>
+      </a>
+      <a href="project-2.html" class="nav-card next">
+        <span class="nav-label">Следующий →</span>
+        <span class="nav-title">Лендинг</span>
+      </a>
     </div>
   </div>
 </section>
 
-<footer><div class="container">© 2026 — Веб-разработчик · Демо-сайт для портфолио</div></footer>
+<!-- ФУТЕР -->
+<footer>
+  <div class="container">
+    © 2026 — Веб-разработчик · Демо-сайт для портфолио
+  </div>
+</footer>
 
 <script>
+  /* ТЕМА */
   const themeToggle = document.getElementById('themeToggle');
   const root = document.documentElement;
   const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-  applyTheme(localStorage.getItem('theme') || 'dark');
+  const savedTheme = localStorage.getItem('theme');
+  applyTheme(savedTheme || 'dark');
+
   themeToggle.addEventListener('click', () => {
-    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    applyTheme(next); localStorage.setItem('theme', next);
+    const current = root.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('theme', next);
   });
+
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
-    if (metaThemeColor) metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0f' : '#faf9fc');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0f' : '#faf9fc');
+    }
+  }
+
+  /* ПОЯВЛЕНИЕ ЭЛЕМЕНТОВ */
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('section:not(.project-hero)').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(40px)';
+      section.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+      observer.observe(section);
+    });
+
+    const itemObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, i * 100);
+          itemObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.info-item, .feature-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+      itemObserver.observe(el);
+    });
   }
 </script>
+
 </body>
 </html>
